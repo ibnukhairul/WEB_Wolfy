@@ -21,7 +21,7 @@
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
 
-      const response = await fetch("https://script.google.com/macros/s/AKfycby68S4hl2F_BSqiL247slFyh38Umpoa7Y9qay5KKd645SY9HKJGX57O3IvHmS5rCRcu/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbwUHtS4oiriEdvp74vCDLEz2VW-zXc_GFqthDAdjjRH_i0S5Qm_0rsNwGGuVBgIVXcW/exec", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -30,7 +30,8 @@
       if (response.ok) {
         alert("Pesanan berhasil dikirim!");
       } else {
-        alert("Gagal mengirim pesanan.");
+        const errorText = await response.text(); // Baca error dari server
+        alert("Gagal mengirim pesanan: " + errorText);
       }
     });
   </script>
