@@ -26,7 +26,6 @@
       try {
         const response = await fetch("https://script.google.com/macros/s/AKfycbzlSbTVB1oC4KNDDXaBB231OBBrJQH-RW9xw5d8-wywF35aDuhviCrUzqZDe39G0Ds/exec", {
           method: "POST",
-          mode: 'no-cors',
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         });
