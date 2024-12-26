@@ -24,8 +24,9 @@
       const data = Object.fromEntries(formData.entries());
 
       try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbw5EgRxJ3GuoQthS7387_DN_k-m6W5lL4YULlttCBvjKwVhMH1cBiMAReRRZ7lxYwO8/exec", {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbxKiSssCpOu20g6KoqEpgT6XAZDtW0D9WFZG1Aa8EfUwxhvT-2pttBjjRkQtWitz8k/exec", {
           method: "POST",
+          mode: 'no-cors',
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         });
