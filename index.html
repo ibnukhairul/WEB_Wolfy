@@ -21,7 +21,7 @@
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
 
-      const response = await fetch("https://script.google.com/macros/s/AKfycbyaUWiGTztEIcIXaY2IJ2Pm8CTRbUc2p70LRbB4jwBVqwLd6LPJ4rI_b8OC_kC75PD8/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycby68S4hl2F_BSqiL247slFyh38Umpoa7Y9qay5KKd645SY9HKJGX57O3IvHmS5rCRcu/exec", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
