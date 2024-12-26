@@ -3,35 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pesanan</title>
+  <title>Form Order</title>
 </head>
 <body>
-  <h1>Input Pesanan</h1>
   <form id="orderForm">
-    <label>Nama: <input type="text" name="nama" required></label><br>
-    <label>Layanan: <input type="text" name="layanan" required></label><br>
-    <label>Harga: <input type="number" name="harga" required></label><br>
-    <label>Waktu: <input type="datetime-local" name="waktu" required></label><br>
+    <label for="nama">Nama:</label>
+    <input type="text" id="nama" name="nama" required><br>
+    <label for="layanan">Layanan:</label>
+    <input type="text" id="layanan" name="layanan" required><br>
+    <label for="harga">Harga:</label>
+    <input type="number" id="harga" name="harga" required><br>
+    <label for="waktu">Waktu:</label>
+    <input type="datetime-local" id="waktu" name="waktu" required><br>
     <button type="submit">Kirim</button>
   </form>
-
   <script>
     document.getElementById("orderForm").addEventListener("submit", async function(e) {
       e.preventDefault();
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
 
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwUHtS4oiriEdvp74vCDLEz2VW-zXc_GFqthDAdjjRH_i0S5Qm_0rsNwGGuVBgIVXcW/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbw5EgRxJ3GuoQthS7387_DN_k-m6W5lL4YULlttCBvjKwVhMH1cBiMAReRRZ7lxYwO8/exec", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
 
-      if (response.ok) {
-        alert("Pesanan berhasil dikirim!");
-      } else {
-        const errorText = await response.text(); // Baca error dari server
-        alert("Gagal mengirim pesanan: " + errorText);
+        if (response.ok) {
+          alert("Pesanan berhasil dikirim!");
+        } else {
+          const error = await response.text();
+          alert("Gagal mengirim pesanan: " + error);
+        }
+      } catch (err) {
+        console.error("Error:", err);
+        alert("Terjadi kesalahan saat mengirim pesanan. Periksa koneksi Anda.");
       }
     });
   </script>
